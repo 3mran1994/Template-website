@@ -98,16 +98,16 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/35" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[70vh] w-full max-w-[1200px] items-center px-4 py-12 sm:px-6 sm:py-16">
+      <div className="relative mx-auto flex min-h-[70vh] w-full items-center px-6 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-16">
         <button
           aria-label="Previous"
-          className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11"
+          className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11 sm:left-6 md:left-8"
         >
           ←
         </button>
         <button
           aria-label="Next"
-          className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11"
+          className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11 sm:right-6 md:right-8"
         >
           →
         </button>
