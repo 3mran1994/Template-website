@@ -1,5 +1,5 @@
-import NavBar from "@/components/layout/NavBar";
-import TopBar from "@/components/layout/TopBar";
+import NavBar from "@/components/NavBar";
+import TopBar from "@/components/TopBar";
 
 const navLinks = [
   { label: "BEST SELLERS", href: "#" },
