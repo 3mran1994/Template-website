@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in the browser. Edit `src/app/page.tsx`; the page auto-updates as you save.
+Open [http://localhost:3000](http://localhost:3000) in the browser. Edit `src/app/page.jsx`; the page auto-updates as you save. (Project is JavaScript/JSX only.)
 
 ### Health checks
 

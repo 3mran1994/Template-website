@@ -1,0 +1,168 @@
+import NavBar from "@/components/layout/NavBar";
+import TopBar from "@/components/layout/TopBar";
+
+const navLinks = [
+  { label: "BEST SELLERS", href: "#" },
+  { label: "SUBSCRIPTIONS", href: "#" },
+  { label: "LOCATIONS", href: "#" },
+];
+
+const perks = [
+  { label: "Meticulous\nQuality", icon: "cup" },
+  { label: "Ethically\nSourced", icon: "branch" },
+  { label: "Small Batch\nRoasting", icon: "beans" },
+  { label: "Customized\nSubscription", icon: "cards" },
+];
+
+function Icon({ name }) {
+  const stroke = "stroke-current";
+  const common = "w-10 h-10 text-neutral-500";
+
+  if (name === "cup") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        className={common}
+        fill="none"
+      >
+        <path
+          className={stroke}
+          strokeWidth="2"
+          d="M13 20h32a5 5 0 0 1 5 5v4a13 13 0 0 1-13 13H20A13 13 0 0 1 7 29v-4a5 5 0 0 1 5-5Z"
+        />
+        <path className={stroke} strokeWidth="2" d="M50 24h4a6 6 0 0 1 0 12h-4" />
+        <path className={stroke} strokeWidth="2" d="M16 42v3a5 5 0 0 0 5 5h16a5 5 0 0 0 5-5v-3" />
+      </svg>
+    );
+  }
+
+  if (name === "branch") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        className={common}
+        fill="none"
+      >
+        <path className={stroke} strokeWidth="2" d="M18 40c10-6 12-18 12-32" />
+        <circle className={stroke} strokeWidth="2" cx="30" cy="8" r="4" />
+        <path className={stroke} strokeWidth="2" d="M30 24c4 4 10 6 18 4" />
+        <circle className={stroke} strokeWidth="2" cx="50" cy="26" r="4" />
+        <path className={stroke} strokeWidth="2" d="M24 30c-2 6-8 12-16 14" />
+        <circle className={stroke} strokeWidth="2" cx="8" cy="46" r="4" />
+      </svg>
+    );
+  }
+
+  if (name === "beans") {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        className={common}
+        fill="none"
+      >
+        <ellipse className={stroke} strokeWidth="2" cx="22" cy="28" rx="9" ry="14" />
+        <path className={stroke} strokeWidth="2" d="M22 14c2 6-2 10 0 16s-2 10-4 12" />
+        <ellipse className={stroke} strokeWidth="2" cx="42" cy="36" rx="9" ry="14" />
+        <path className={stroke} strokeWidth="2" d="M42 22c2 6-2 10 0 16s-2 10-4 12" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 64 64"
+      className={common}
+      fill="none"
+    >
+      <rect className={stroke} strokeWidth="2" x="20" y="16" width="24" height="32" rx="2" />
+      <rect className={stroke} strokeWidth="2" x="16" y="20" width="24" height="32" rx="2" />
+    </svg>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-black text-white">
+      <div className="absolute inset-0">
+        <div
+          className="h-full w-full bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/35" />
+      </div>
+
+      <div className="relative mx-auto flex min-h-[70vh] w-full max-w-[1200px] items-center px-4 py-12 sm:px-6 sm:py-16">
+        <button
+          aria-label="Previous"
+          className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11"
+        >
+          ←
+        </button>
+        <button
+          aria-label="Next"
+          className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11"
+        >
+          →
+        </button>
+
+        <div className="flex w-full flex-col gap-8">
+          <div className="max-w-xl space-y-6 text-left">
+            <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-[40px] font-[var(--font-display)]">
+              Guatemala Antigua Josué Morales
+            </h1>
+            <p className="text-base leading-7 text-neutral-100 sm:text-lg">
+              Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
+            </p>
+            <a
+              className="inline-flex min-w-[170px] justify-center border border-white bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-black transition hover:bg-white/90"
+              href="#"
+            >
+              SHOP NOW
+            </a>
+          </div>
+
+          <div className="flex items-center gap-2 text-[11px] font-semibold text-neutral-200">
+            <span className="text-white">01</span>
+            <span>02</span>
+            <span>03</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Perks() {
+  return (
+    <section className="border-t border-neutral-200 bg-white py-12 md:py-16">
+      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-y-10 px-6 text-center sm:px-8 md:grid-cols-4">
+        {perks.map((perk) => (
+          <div key={perk.label} className="flex flex-col items-center gap-3 text-sm text-neutral-700">
+            <Icon name={perk.icon} />
+            <div className="whitespace-pre-line leading-relaxed">{perk.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-[#f7f4f0] text-[#1b1b1b]">
+      <TopBar />
+      <NavBar navLinks={navLinks} />
+      <main className="flex flex-col gap-0">
+        <Hero />
+        <Perks />
+      </main>
+    </div>
+  );
+}
