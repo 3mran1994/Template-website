@@ -8,6 +8,7 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import ProductCard from "./ProductCard";
 
 export default function NavBar({ navLinks = [] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -382,30 +383,7 @@ export default function NavBar({ navLinks = [] }) {
                 <h3 className="mb-8 text-xl font-light text-neutral-800">We think you may like</h3>
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                   {recommendedProducts.map((product) => (
-                    <div key={product.id} className="flex flex-col">
-                      <div className="relative mb-4 aspect-square w-full overflow-hidden bg-neutral-100">
-                        {product.badge && (
-                          <span className="absolute left-3 top-3 bg-[#c4b5a0] px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-neutral-800">
-                            {product.badge}
-                          </span>
-                        )}
-                        <div className="flex h-full items-center justify-center">
-                          <svg className="h-16 w-16 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex flex-col">
-                        <h4 className="mb-2 text-lg font-medium text-neutral-900">{product.name}</h4>
-                        <p className="mb-3 text-sm text-neutral-600">{product.description}</p>
-                        <p className="mb-4 text-xs font-medium uppercase tracking-wider text-neutral-500">
-                          {product.flavors}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-xl font-medium text-neutral-900">${product.price}</span>
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
               </div>
