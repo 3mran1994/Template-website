@@ -13,13 +13,36 @@ export default function NavBar({ navLinks = [] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const [isLocationsDropdownOpen, setIsLocationsDropdownOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    document.body.style.overflow = isMenuOpen || isCartOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isCartOpen]);
+
+  // Mock cart items for demo
+  const cartItems = [];
+
+  const recommendedProducts = [
+    {
+      id: 1,
+      name: 'Craft Instant Espresso',
+      price: 28,
+      description: 'Cafe-Quality Espresso at Home',
+      flavors: 'DARK CHOCOLATE, MOLASSES, TOASTED MALT',
+      badge: 'BEST SELLER'
+    },
+    {
+      id: 2,
+      name: 'Craft Instant Espresso Single Serve',
+      price: 15,
+      description: 'Cafe-Quality Espresso at Home in Single-Serve Sachets',
+      flavors: 'DARK CHOCOLATE, MOLASSES, TOASTED MALT',
+      badge: 'BEST SELLER'
+    }
+  ];
 
   const megaMenuCategories = [
     {
@@ -76,7 +99,8 @@ export default function NavBar({ navLinks = [] }) {
   ];
 
   return (
-    <header className="sticky top-0 z-30 w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
+    <>
+      <header className="sticky top-0 z-30 w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Left Navigation */}
         <div className="flex flex-1 items-center gap-8 sm:gap-10">
@@ -135,7 +159,11 @@ export default function NavBar({ navLinks = [] }) {
           <button aria-label="Account" className="hover:text-black">
             <UserIcon className="h-5 w-5" />
           </button>
-          <button aria-label="Cart" className="hover:text-black">
+          <button 
+            aria-label="Cart" 
+            className="hover:text-black"
+            onClick={() => setIsCartOpen(true)}
+          >
             <ShoppingBagIcon className="h-5 w-5" />
           </button>
           <button
@@ -307,12 +335,99 @@ export default function NavBar({ navLinks = [] }) {
           <button className="px-2 py-3 hover:bg-neutral-50" aria-label="Account">
             <UserIcon className="mx-auto h-5 w-5" />
           </button>
-          <button className="px-2 py-3 hover:bg-neutral-50" aria-label="Cart">
+          <button 
+            className="px-2 py-3 hover:bg-neutral-50" 
+            aria-label="Cart"
+            onClick={() => setIsCartOpen(true)}
+          >
             <ShoppingBagIcon className="mx-auto h-5 w-5" />
           </button>
         </div>
       </div>
     </header>
+
+      {/* Cart Drawer Backdrop */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
+          isCartOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setIsCartOpen(false)}
+      />
+
+      {/* Cart Drawer */}
+      <div
+        className={`fixed top-0 bottom-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl transition-transform duration-300 overflow-hidden ${
+          isCartOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex h-full flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-neutral-200 bg-white px-8 py-5">
+            <h2 className="text-2xl font-light text-neutral-800">
+              Your cart is empty
+            </h2>
+            <button
+              aria-label="Close cart"
+              className="text-neutral-700 hover:text-black transition-colors"
+              onClick={() => setIsCartOpen(false)}
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+          </div>
+
+          {/* Cart Content */}
+          <div className="flex-1 overflow-y-auto bg-white px-8 py-8">
+            {cartItems.length === 0 ? (
+              <div>
+                <h3 className="mb-8 text-xl font-light text-neutral-800">We think you may like</h3>
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                  {recommendedProducts.map((product) => (
+                    <div key={product.id} className="flex flex-col">
+                      <div className="relative mb-4 aspect-square w-full overflow-hidden bg-neutral-100">
+                        {product.badge && (
+                          <span className="absolute left-3 top-3 bg-[#c4b5a0] px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-neutral-800">
+                            {product.badge}
+                          </span>
+                        )}
+                        <div className="flex h-full items-center justify-center">
+                          <svg className="h-16 w-16 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <h4 className="mb-2 text-lg font-medium text-neutral-900">{product.name}</h4>
+                        <p className="mb-3 text-sm text-neutral-600">{product.description}</p>
+                        <p className="mb-4 text-xs font-medium uppercase tracking-wider text-neutral-500">
+                          {product.flavors}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xl font-medium text-neutral-900">${product.price}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {/* Cart items would go here */}
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          <div className="border-t border-neutral-200 bg-white px-8 py-6">
+            <button 
+              className="w-full bg-[#5a5a5a] py-4 text-sm font-medium uppercase tracking-wider text-white hover:bg-[#4a4a4a] transition-colors"
+              onClick={() => setIsCartOpen(false)}
+            >
+              RETURN TO SHOP
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 ;
