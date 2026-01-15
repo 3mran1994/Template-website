@@ -395,9 +395,9 @@ export default function NavBar({ navLinks = [] }) {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-neutral-200 bg-white px-8 py-6">
+          <div className="border-t border-neutral-200 bg-white px-8 py-6 flex justify-center">
             <button 
-              className="w-full bg-[#5a5a5a] py-4 text-sm font-medium uppercase tracking-wider text-white hover:bg-[#4a4a4a] transition-colors"
+              className="w-full max-w-md mx-4 bg-[#5a5a5a] py-4 text-sm font-medium uppercase tracking-wider text-white hover:bg-[#4a4a4a] transition-colors"
               onClick={() => setIsCartOpen(false)}
             >
               RETURN TO SHOP
