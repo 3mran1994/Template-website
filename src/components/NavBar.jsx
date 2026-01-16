@@ -106,10 +106,10 @@ export default function NavBar({ navLinks = [] }) {
   return (
     <>
       <header className="sticky top-0 z-30 w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <div className="mx-auto flex h-20 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Left Navigation */}
         <div className="flex flex-1 items-center gap-8 sm:gap-10">
-          <nav className="hidden items-center gap-8 text-xs font-medium tracking-wider text-neutral-900 md:flex lg:gap-10">
+          <nav className="hidden items-center gap-8 text-base font-normal tracking-wider text-neutral-900 md:flex lg:gap-10">
             <div
               className="relative cursor-pointer border-b-2 border-transparent py-1 hover:border-neutral-900"
               onMouseEnter={() => setIsShopDropdownOpen(true)}
@@ -148,7 +148,7 @@ export default function NavBar({ navLinks = [] }) {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 64"
-              className="h-10 w-8 text-[#4a9fb5]"
+              className="h-14 w-11 text-[#4a9fb5]"
               fill="currentColor"
             >
               <path d="M24 2c-6.6 0-12 5.4-12 12v20c0 4 2 7.5 5 9.5v8.5c0 4.4 3.6 8 8 8h2c4.4 0 8-3.6 8-8v-8.5c3-2 5-5.5 5-9.5V14c0-6.6-5.4-12-12-12h-4zm-8 12c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v20c0 3.3-2 6.2-5 7.4V34c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v7.4c-3-1.2-5-4.1-5-7.4V14zm5 28h6v10c0 2.2-1.8 4-4 4h-2c-2.2 0-4-1.8-4-4V42z"/>
@@ -163,21 +163,21 @@ export default function NavBar({ navLinks = [] }) {
             className="cursor-pointer hover:text-black"
             onClick={() => setIsSearchOpen(true)}
           >
-            <MagnifyingGlassIcon className="h-5 w-5" />
+            <MagnifyingGlassIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Account" 
             className="cursor-pointer hover:text-black"
             onClick={() => setIsProfileOpen(true)}
           >
-            <UserIcon className="h-5 w-5" />
+            <UserIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Cart" 
             className="cursor-pointer hover:text-black"
             onClick={() => setIsCartOpen(true)}
           >
-            <ShoppingBagIcon className="h-5 w-5" />
+            <ShoppingBagIcon className="h-6 w-6" />
           </button>
           <button
             aria-label="Toggle menu"
@@ -193,7 +193,7 @@ export default function NavBar({ navLinks = [] }) {
 
       {/* Mega Menu Dropdown - Hidden on mobile */}
       <div
-        className={`absolute left-0 right-0 top-16 hidden w-full bg-white shadow-lg transition-all duration-300 md:block ${
+        className={`absolute left-0 right-0 top-20 hidden w-full bg-white shadow-lg transition-all duration-300 md:block ${
           isShopDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onMouseEnter={() => setIsShopDropdownOpen(true)}

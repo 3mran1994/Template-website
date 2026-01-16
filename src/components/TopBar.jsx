@@ -53,7 +53,7 @@ export default function TopBar() {
   const currentMessage = messages[currentIndex];
 
   return (
-    <div className="relative flex items-center justify-between bg-[#8ad3e3] py-1 px-6 text-xs text-[#00344d] sm:px-8 md:px-12 lg:px-16 xl:px-20">
+    <div className="relative flex items-center justify-between bg-[#8ad3e3] py-0.5 px-6 text-xs text-[#00344d] sm:px-8 md:px-12 lg:px-16 xl:px-20">
       {/* Spacer for left side */}
       <div className="w-20"></div>
       
@@ -78,7 +78,7 @@ export default function TopBar() {
       <div className="relative -mr-2" ref={dropdownRef}>
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center gap-1 px-2 py-1 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1 px-2 py-1 hover:opacity-80 transition-opacity cursor-pointer"
         >
           <span className="text-base">{currentLanguage?.flag}</span>
           <span className="font-medium">{currentLanguage?.code}</span>
