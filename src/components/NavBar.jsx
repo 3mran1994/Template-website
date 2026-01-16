@@ -8,20 +8,24 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import ProductCard from "./ProductCard";
+import CartProductCard from "./CartProductCard";
+import Drawer from "./Drawer";
+import SearchDrawer from "./SearchDrawer";
 
 export default function NavBar({ navLinks = [] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const [isLocationsDropdownOpen, setIsLocationsDropdownOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen || isCartOpen ? "hidden" : "";
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isMenuOpen, isCartOpen]);
+  }, [isMenuOpen]);
 
   // Mock cart items for demo
   const cartItems = [];
@@ -154,15 +158,23 @@ export default function NavBar({ navLinks = [] }) {
 
         {/* Right Icons */}
         <div className="flex flex-1 items-center justify-end gap-4 text-sm text-neutral-700">
-          <button aria-label="Search" className="hover:text-black">
+          <button 
+            aria-label="Search" 
+            className="cursor-pointer hover:text-black"
+            onClick={() => setIsSearchOpen(true)}
+          >
             <MagnifyingGlassIcon className="h-5 w-5" />
           </button>
-          <button aria-label="Account" className="hover:text-black">
+          <button 
+            aria-label="Account" 
+            className="cursor-pointer hover:text-black"
+            onClick={() => setIsProfileOpen(true)}
+          >
             <UserIcon className="h-5 w-5" />
           </button>
           <button 
             aria-label="Cart" 
-            className="hover:text-black"
+            className="cursor-pointer hover:text-black"
             onClick={() => setIsCartOpen(true)}
           >
             <ShoppingBagIcon className="h-5 w-5" />
@@ -171,7 +183,7 @@ export default function NavBar({ navLinks = [] }) {
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
-            className="text-lg hover:text-black md:hidden"
+            className="cursor-pointer text-lg hover:text-black md:hidden"
             onClick={() => setIsMenuOpen((open) => !open)}
           >
             {isMenuOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
@@ -330,10 +342,24 @@ export default function NavBar({ navLinks = [] }) {
         </nav>
 
         <div className="mt-auto grid grid-cols-3 border-t border-neutral-200 text-center text-sm text-neutral-700">
-          <button className="px-2 py-3 hover:bg-neutral-50" aria-label="Search">
+          <button 
+            className="px-2 py-3 hover:bg-neutral-50" 
+            aria-label="Search"
+            onClick={() => {
+              setIsSearchOpen(true);
+              setIsMenuOpen(false);
+            }}
+          >
             <MagnifyingGlassIcon className="mx-auto h-5 w-5" />
           </button>
-          <button className="px-2 py-3 hover:bg-neutral-50" aria-label="Account">
+          <button 
+            className="px-2 py-3 hover:bg-neutral-50" 
+            aria-label="Account"
+            onClick={() => {
+              setIsProfileOpen(true);
+              setIsMenuOpen(false);
+            }}
+          >
             <UserIcon className="mx-auto h-5 w-5" />
           </button>
           <button 
@@ -347,55 +373,118 @@ export default function NavBar({ navLinks = [] }) {
       </div>
     </header>
 
-      {/* Cart Drawer Backdrop */}
-      <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
-          isCartOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        onClick={() => setIsCartOpen(false)}
+      {/* Search Drawer */}
+      <SearchDrawer
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
       />
 
-      {/* Cart Drawer */}
-      <div
-        className={`fixed top-0 bottom-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl transition-transform duration-300 overflow-hidden ${
-          isCartOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+      {/* Profile Drawer */}
+      <Drawer
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+        maxWidth="max-w-xl"
+        showCloseText={true}
+        headerAlign="end"
       >
-        <div className="flex h-full flex-col">
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-neutral-200 bg-white px-8 py-5">
-            <h2 className="text-2xl font-light text-neutral-800">
-              Your cart is empty
+        <div className="px-8 py-12">
+          <div className="mx-auto max-w-md">
+            <h2 className="mb-8 text-3xl font-light text-neutral-800">
+              Log Into, or Create Your Account
             </h2>
-            <button
-              aria-label="Close cart"
-              className="text-neutral-700 hover:text-black transition-colors"
-              onClick={() => setIsCartOpen(false)}
-            >
-              <XMarkIcon className="h-6 w-6" />
+
+            {/* Social Login Buttons */}
+            <div className="space-y-3 mb-8">
+              <button className="w-full bg-[#4267B2] text-white py-3.5 text-sm font-medium tracking-wide hover:bg-[#365899] transition-colors flex items-center justify-center gap-2">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Log in With Facebook
+              </button>
+              
+              <button className="w-full bg-white border border-neutral-300 text-neutral-800 py-3.5 text-sm font-medium tracking-wide hover:bg-neutral-50 transition-colors flex items-center justify-center gap-2">
+                <svg className="h-5 w-5" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Log In With Google
+              </button>
+              
+              <button className="w-full bg-neutral-900 text-white py-3.5 text-sm font-medium tracking-wide hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2">
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                </svg>
+                Log In With Apple
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-neutral-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="bg-white px-4 text-neutral-500 font-medium">OR</span>
+              </div>
+            </div>
+
+            {/* Email Section */}
+            <div className="mb-8">
+              <p className="mb-4 text-sm text-neutral-700 tracking-wide">
+                WE'LL SEND YOU A MAGIC LINK TO LOGIN IN VIA EMAIL
+              </p>
+              <input
+                type="email"
+                placeholder="EMAIL ADDRESS"
+                className="w-full border border-neutral-300 bg-white px-4 py-3 text-sm placeholder:text-neutral-400 focus:border-neutral-500 focus:outline-none"
+              />
+            </div>
+
+            <button className="w-full bg-neutral-700 text-white py-4 text-sm font-medium tracking-wider hover:bg-neutral-600 transition-colors mb-8">
+              CONTINUE
             </button>
-          </div>
 
-          {/* Cart Content */}
-          <div className="flex-1 overflow-y-auto bg-white px-8 py-8">
-            {cartItems.length === 0 ? (
-              <div>
-                <h3 className="mb-8 text-xl font-light text-neutral-800">We think you may like</h3>
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-                  {recommendedProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {/* Cart items would go here */}
-              </div>
-            )}
-          </div>
+            {/* Password Info */}
+            <div className="mb-8">
+              <h3 className="mb-3 text-sm font-semibold tracking-wider text-neutral-800">
+                WHAT ABOUT A PASSWORD?
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-4">
+                We don't believe in passwords. Enter your email address and we'll email you a magic link. Click that link from any device and you'll be logged in.
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                To ensure the security and integrity of our platform, our site is protected by reCAPTCHA, and the Google{" "}
+                <a href="#" className="underline hover:text-neutral-800">Privacy Policy</a>{" "}
+                and{" "}
+                <a href="#" className="underline hover:text-neutral-800">Terms of Service</a>{" "}
+                apply.
+              </p>
+            </div>
 
-          {/* Footer */}
-          <div className="border-t border-neutral-200 bg-white px-8 py-6 flex justify-center">
+            {/* Account Creation Info */}
+            <div>
+              <h3 className="mb-3 text-sm font-semibold tracking-wider text-neutral-800">
+                DON'T HAVE AN ACCOUNT?
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                No problem. Provide your email address above and click the magic link that we'll send to your email - you'll be logged into your brand-new account.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Drawer>
+
+      {/* Cart Drawer */}
+      <Drawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        title="Your cart is empty"
+        maxWidth="max-w-2xl"
+        showCloseText={true}
+        footer={
+          <div className="px-8 py-6 flex justify-center">
             <button 
               className="w-full max-w-md mx-4 bg-[#5a5a5a] py-4 text-sm font-medium uppercase tracking-wider text-white hover:bg-[#4a4a4a] transition-colors"
               onClick={() => setIsCartOpen(false)}
@@ -403,8 +492,25 @@ export default function NavBar({ navLinks = [] }) {
               RETURN TO SHOP
             </button>
           </div>
+        }
+      >
+        <div className="px-8 py-8">
+          {cartItems.length === 0 ? (
+            <div>
+              <h3 className="mb-8 text-xl font-light text-neutral-800">We think you may like</h3>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                {recommendedProducts.map((product) => (
+                  <CartProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {/* Cart items would go here */}
+            </div>
+          )}
         </div>
-      </div>
+      </Drawer>
     </>
   );
 }
