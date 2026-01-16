@@ -111,7 +111,7 @@ export default function NavBar({ navLinks = [] }) {
         <div className="flex flex-1 items-center gap-8 sm:gap-10">
           <nav className="hidden items-center gap-8 text-base font-normal tracking-wider text-neutral-900 md:flex lg:gap-10">
             <div
-              className="relative cursor-pointer border-b-2 border-transparent py-1 hover:border-neutral-900"
+              className="relative cursor-pointer border-b border-transparent py-0.5 hover:border-neutral-900"
               onMouseEnter={() => setIsShopDropdownOpen(true)}
               onMouseLeave={() => setIsShopDropdownOpen(false)}
             >
@@ -121,7 +121,7 @@ export default function NavBar({ navLinks = [] }) {
               <a
                 key={item.label}
                 href={item.href}
-                className="border-b-2 border-transparent py-1 hover:border-neutral-900"
+                className="border-b border-transparent py-0.5 hover:border-neutral-900"
                 onMouseEnter={() => {
                   if (item.label === "LOCATIONS") {
                     setIsLocationsDropdownOpen(true);
