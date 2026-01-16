@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
         </div>
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-          <button className="bg-[#5a5a5a] text-white px-8 py-3 text-sm font-medium uppercase tracking-wider hover:bg-[#4a4a4a] transition-colors">
+          <button className="bg-neutral-700 text-white px-8 py-3 text-sm font-medium uppercase tracking-wider hover:bg-neutral-800 transition-colors">
             ADD TO CART
           </button>
         </div>
