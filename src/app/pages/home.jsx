@@ -1,4 +1,6 @@
+
 import Header from "@/components/Header";
+import ProductsSection from "@/components/ProductsSection";
 
 const navLinks = [
   { label: "BEST SELLERS", href: "#" },
@@ -98,18 +100,7 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-[70vh] w-full items-center px-6 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-16">
-        <button
-          aria-label="Previous"
-          className="absolute left-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11 sm:left-6 md:left-8"
-        >
-          ←
-        </button>
-        <button
-          aria-label="Next"
-          className="absolute right-4 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/20 text-base backdrop-blur transition hover:bg-white/30 sm:h-11 sm:w-11 sm:right-6 md:right-8"
-        >
-          →
-        </button>
+        {/* Slider buttons removed as requested */}
 
         <div className="flex w-full flex-col gap-8">
           <div className="max-w-xl space-y-6 text-left">
@@ -127,11 +118,7 @@ function Hero() {
             </a>
           </div>
 
-          <div className="flex items-center gap-2 text-[11px] font-semibold text-neutral-200">
-            <span className="text-white">01</span>
-            <span>02</span>
-            <span>03</span>
-          </div>
+          {/* Slider index removed as requested */}
         </div>
       </div>
     </section>
@@ -175,6 +162,7 @@ export default function HomePage() {
         />
         <Hero />
         <Perks />
+        <ProductsSection />
       </main>
     </div>
   );

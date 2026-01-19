@@ -1,7 +1,7 @@
 "use client";
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function Drawer({ 
@@ -14,7 +14,10 @@ export default function Drawer({
   showCloseText = false,
   headerAlign = "between"
 }) {
+
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    setMounted(true);
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -27,7 +30,7 @@ export default function Drawer({
     start: "justify-start"
   }[headerAlign];
 
-  if (typeof window === "undefined") return null;
+  if (!mounted) return null;
   return createPortal(
     <>
       {/* Backdrop */}

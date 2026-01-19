@@ -1,12 +1,15 @@
 "use client";
 
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import ProductCard from "./ProductCard";
 
+
 export default function SearchDrawer({ isOpen, onClose }) {
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
+    setMounted(true);
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -117,7 +120,7 @@ export default function SearchDrawer({ isOpen, onClose }) {
     }
   ];
 
-  if (typeof window === "undefined") return null;
+  if (!mounted) return null;
   return createPortal(
     <>
       {/* Backdrop */}
