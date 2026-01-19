@@ -85,6 +85,8 @@ function Icon({ name }) {
   );
 }
 
+import CTAButton from "@/components/CTAButton";
+
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-black text-white">
@@ -110,12 +112,7 @@ function Hero() {
             <p className="text-base leading-7 text-neutral-100 sm:text-lg">
               Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
             </p>
-            <a
-              className="inline-flex min-w-[170px] justify-center border border-white bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-black transition hover:bg-white/90"
-              href="#"
-            >
-              SHOP NOW
-            </a>
+            <CTAButton href="#">SHOP NOW</CTAButton>
           </div>
 
           {/* Slider index removed as requested */}
@@ -127,14 +124,16 @@ function Hero() {
 
 function Perks() {
   return (
-    <section className="border-t border-neutral-200 bg-white py-12 md:py-16">
-      <div className="mx-auto grid max-w-4xl grid-cols-2 gap-y-10 px-6 text-center sm:px-8 md:grid-cols-4">
-        {perks.map((perk) => (
-          <div key={perk.label} className="flex flex-col items-center gap-3 text-sm text-neutral-700">
-            <Icon name={perk.icon} />
-            <div className="whitespace-pre-line leading-relaxed">{perk.label}</div>
-          </div>
-        ))}
+    <section className="border-t border-neutral-200 bg-white py-16 w-full">
+      <div className="w-full flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-24 gap-y-10 px-4 md:px-16 lg:px-32 xl:px-48 text-center max-w-screen-2xl w-full">
+          {perks.map((perk) => (
+            <div key={perk.label} className="flex flex-col items-center gap-4 text-base text-neutral-700">
+              <Icon name={perk.icon} />
+              <div className="whitespace-pre-line leading-relaxed">{perk.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
