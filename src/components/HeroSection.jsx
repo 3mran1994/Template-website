@@ -2,7 +2,7 @@ import React from "react";
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-black text-white">
+    <section className="relative overflow-hidden bg-black text-white">
       <div className="absolute inset-0">
         <div
           className="h-full w-full bg-cover bg-center"

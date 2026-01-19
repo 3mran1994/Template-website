@@ -2,6 +2,7 @@
 
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function Drawer({ 
   isOpen, 
@@ -26,7 +27,8 @@ export default function Drawer({
     start: "justify-start"
   }[headerAlign];
 
-  return (
+  if (typeof window === "undefined") return null;
+  return createPortal(
     <>
       {/* Backdrop */}
       <div
@@ -75,6 +77,7 @@ export default function Drawer({
           )}
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }

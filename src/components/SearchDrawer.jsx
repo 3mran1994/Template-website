@@ -2,6 +2,7 @@
 
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import ProductCard from "./ProductCard";
 
 export default function SearchDrawer({ isOpen, onClose }) {
@@ -116,7 +117,8 @@ export default function SearchDrawer({ isOpen, onClose }) {
     }
   ];
 
-  return (
+  if (typeof window === "undefined") return null;
+  return createPortal(
     <>
       {/* Backdrop */}
       <div
@@ -205,6 +207,7 @@ export default function SearchDrawer({ isOpen, onClose }) {
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
