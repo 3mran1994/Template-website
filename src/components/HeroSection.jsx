@@ -1,0 +1,39 @@
+import React from "react";
+
+export default function HeroSection() {
+  return (
+    <section className="relative isolate overflow-hidden bg-black text-white">
+      <div className="absolute inset-0">
+        <div
+          className="h-full w-full bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/35" />
+      </div>
+      <div className="relative mx-auto flex min-h-[70vh] w-full items-center px-6 py-12 sm:px-8 sm:py-16 md:px-12 lg:px-16">
+        <div className="flex w-full flex-col gap-8">
+          <div className="max-w-xl space-y-6 text-left">
+            <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-[40px] font-[var(--font-display)]">
+              Guatemala Antigua Josué Morales
+            </h1>
+            <p className="text-base leading-7 text-neutral-100 sm:text-lg">
+              Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
+            </p>
+            <a
+              className="inline-flex min-w-[170px] justify-center border border-white bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-black transition-all duration-500 ease-in-out hover:bg-neutral-200 hover:scale-110 hover:shadow-lg"
+              href="#"
+              style={{
+                transitionProperty: 'background, box-shadow, transform',
+              }}
+            >
+              SHOP NOW
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

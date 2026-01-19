@@ -105,7 +105,7 @@ export default function NavBar({ navLinks = [] }) {
 
   return (
     <>
-      <header className="sticky top-0 z-30 w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
+      <header className="w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-20 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Left Navigation */}
         <div className="flex flex-1 items-center gap-8 sm:gap-10">

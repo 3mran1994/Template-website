@@ -1,5 +1,4 @@
-import NavBar from "@/components/NavBar";
-import TopBar from "@/components/TopBar";
+import Header from "@/components/Header";
 
 const navLinks = [
   { label: "BEST SELLERS", href: "#" },
@@ -157,9 +156,23 @@ function Perks() {
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f7f4f0] text-[#1b1b1b]">
-      <TopBar />
-      <NavBar navLinks={navLinks} />
-      <main className="flex flex-col gap-0">
+      <Header navLinks={navLinks} />
+      <main
+        className="flex flex-col gap-0 relative"
+        style={{ paddingTop: '7rem' }}
+      >
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '7rem',
+            background: 'rgba(255,255,255,0.95)', // matches header bg-white/95
+            zIndex: 0,
+          }}
+        />
         <Hero />
         <Perks />
       </main>
