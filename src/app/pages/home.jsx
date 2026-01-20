@@ -1,6 +1,6 @@
-
 import Header from "@/components/Header";
 import ProductsSection from "@/components/ProductsSection";
+import AboutSection from "@/components/AboutSection";
 
 const navLinks = [
   { label: "BEST SELLERS", href: "#" },
@@ -162,6 +162,7 @@ export default function HomePage() {
         <Hero />
         <Perks />
         <ProductsSection />
+        <AboutSection />
       </main>
     </div>
   );
