@@ -1,6 +1,5 @@
 
 import CTAButton from "./CTAButton";
-import DynamicWidthContainer from "./DynamicWidthContainer";
 
 export default function HeroSection() {
   return (
@@ -17,16 +16,13 @@ export default function HeroSection() {
       </div>
       <div className="relative mx-auto flex min-h-[70vh] w-full items-center py-12 sm:py-16">
         <div className="flex w-full flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-          {/* Container with dynamic width based on h1 */}
           <div className="space-y-6 text-left">
-            <DynamicWidthContainer>
-              <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-[40px] font-[var(--font-display)] whitespace-nowrap">
-                Guatemala Antigua Josué Morales
-              </h1>
-              <p className="text-base leading-7 text-neutral-100 sm:text-lg">
-                Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
-              </p>
-            </DynamicWidthContainer>
+            <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-[40px] font-[var(--font-display)]">
+              Guatemala Antigua Josué Morales
+            </h1>
+            <p className="text-base leading-7 text-neutral-100 sm:text-lg">
+              Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
+            </p>
             <CTAButton
               href="#"
               noInvert
