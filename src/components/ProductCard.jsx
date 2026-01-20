@@ -1,6 +1,6 @@
 import AddToCartButton from "./AddToCartButton";
 
-export default function SearchProductCard({ product }) {
+export default function ProductCard({ product }) {
   return (
     <a
       href={`#${product.id}`}

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Header({ navLinks = [] }) {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAtTop, setIsAtTop] = useState(true);
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +16,8 @@ export default function Header({ navLinks = [] }) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const direction = currentScrollY > lastScrollY ? "down" : "up";
+
+      setIsAtTop(currentScrollY < 10);
 
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -30,7 +33,7 @@ export default function Header({ navLinks = [] }) {
       }
 
       if (delayTimeout) clearTimeout(delayTimeout);
-      delayTimeout = setTimeout(() => setIsScrolling(false), 200);
+      delayTimeout = setTimeout(() => {}, 200);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -49,7 +52,7 @@ export default function Header({ navLinks = [] }) {
       style={{ willChange: "transform" }}
     >
       <TopBar />
-      <NavBar navLinks={navLinks} />
+      <NavBar navLinks={navLinks} transparent={isAtTop} />
     </div>
   );
 }

@@ -1,2 +1,5 @@
-// Home route re-export for root path
-export { default } from "./pages/home";
+import HomePage from "./home/page";
+
+export default function Page() {
+	return <HomePage />;
+}

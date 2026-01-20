@@ -24,7 +24,7 @@ export default function HeroSection() {
               Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
             </p>
             <CTAButton
-              href="#"
+              href="/shop"
               noInvert
               className="border-white bg-white text-black hover:scale-110 hover:shadow-lg mt-6"
               style={{ transitionProperty: 'box-shadow, transform', transitionDuration: '500ms', transitionTimingFunction: 'ease-in-out' }}

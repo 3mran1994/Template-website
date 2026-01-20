@@ -12,7 +12,7 @@ import CartProductCard from "./CartProductCard";
 import Drawer from "./Drawer";
 import SearchDrawer from "./SearchDrawer";
 
-export default function NavBar({ navLinks = [] }) {
+export default function NavBar({ navLinks = [], transparent = false }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const [isLocationsDropdownOpen, setIsLocationsDropdownOpen] = useState(false);
@@ -105,11 +105,13 @@ export default function NavBar({ navLinks = [] }) {
 
   return (
     <>
-      <header className="w-full border-b border-neutral-200 bg-white/95 backdrop-blur">
+      <header className={
+        `w-full border-b ${transparent ? 'border-transparent bg-transparent' : 'border-neutral-200 bg-white/95 backdrop-blur'}`
+      }>
       <div className="mx-auto flex h-20 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         {/* Left Navigation */}
         <div className="flex flex-1 items-center gap-8 sm:gap-10">
-          <nav className="hidden items-center gap-8 text-base font-normal tracking-wider text-neutral-900 md:flex lg:gap-10">
+          <nav className={`hidden items-center gap-8 text-base font-normal tracking-wider md:flex lg:gap-10 ${transparent ? 'text-white' : 'text-neutral-900'}`}>
             <div
               className="relative cursor-pointer border-b border-transparent py-0.5 hover:border-neutral-900"
               onMouseEnter={() => setIsShopDropdownOpen(true)}
@@ -121,7 +123,7 @@ export default function NavBar({ navLinks = [] }) {
               <a
                 key={item.label}
                 href={item.href}
-                className="border-b border-transparent py-0.5 hover:border-neutral-900"
+                className={`border-b border-transparent py-0.5 ${transparent ? 'hover:border-white' : 'hover:border-neutral-900'}`}
                 onMouseEnter={() => {
                   if (item.label === "LOCATIONS") {
                     setIsLocationsDropdownOpen(true);
@@ -148,7 +150,7 @@ export default function NavBar({ navLinks = [] }) {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 64"
-              className="h-14 w-11 text-[#4a9fb5]"
+              className={`h-14 w-11 ${transparent ? 'text-white' : 'text-[#4a9fb5]'}`}
               fill="currentColor"
             >
               <path d="M24 2c-6.6 0-12 5.4-12 12v20c0 4 2 7.5 5 9.5v8.5c0 4.4 3.6 8 8 8h2c4.4 0 8-3.6 8-8v-8.5c3-2 5-5.5 5-9.5V14c0-6.6-5.4-12-12-12h-4zm-8 12c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v20c0 3.3-2 6.2-5 7.4V34c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v7.4c-3-1.2-5-4.1-5-7.4V14zm5 28h6v10c0 2.2-1.8 4-4 4h-2c-2.2 0-4-1.8-4-4V42z"/>
@@ -157,24 +159,24 @@ export default function NavBar({ navLinks = [] }) {
         </div>
 
         {/* Right Icons */}
-        <div className="flex flex-1 items-center justify-end gap-4 text-sm text-neutral-700">
+        <div className={`flex flex-1 items-center justify-end gap-4 text-sm ${transparent ? 'text-white' : 'text-neutral-700'}`}>
           <button 
             aria-label="Search" 
-            className="cursor-pointer hover:text-black"
+            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsSearchOpen(true)}
           >
             <MagnifyingGlassIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Account" 
-            className="cursor-pointer hover:text-black"
+            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsProfileOpen(true)}
           >
             <UserIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Cart" 
-            className="cursor-pointer hover:text-black"
+            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsCartOpen(true)}
           >
             <ShoppingBagIcon className="h-6 w-6" />
