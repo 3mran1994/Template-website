@@ -1,6 +1,9 @@
 export default function SearchProductCard({ product }) {
   return (
-    <a href={`#${product.id}`} className="group relative flex flex-col">
+    <a
+      href={`#${product.id}`}
+      className="group relative flex flex-col transition-transform duration-300 ease-in transform hover:scale-105"
+    >
       {/* Badge */}
       {product.badge && (
         <div className="absolute right-0 top-0 z-10 bg-[#c9b896] px-5 py-2 text-xs font-medium tracking-wider text-neutral-800">
