@@ -438,7 +438,7 @@ export default function NavBar({ navLinks = [] }) {
               <input
                 type="email"
                 placeholder="EMAIL ADDRESS"
-                className="w-full border border-neutral-300 bg-white px-4 py-3 text-sm placeholder:text-neutral-400 focus:border-neutral-500 focus:outline-none"
+                className="w-full border border-neutral-300 bg-white px-4 py-3 text-sm text-black placeholder:text-neutral-400 focus:border-neutral-500 focus:outline-none"
               />
             </div>
 

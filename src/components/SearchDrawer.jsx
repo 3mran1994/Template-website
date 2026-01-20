@@ -159,7 +159,7 @@ export default function SearchDrawer({ isOpen, onClose }) {
                 <input
                   type="text"
                   placeholder="WHAT CAN WE HELP YOU FIND?"
-                  className="w-full rounded-md border border-neutral-900 bg-white py-2 pl-9 pr-4 text-xs tracking-wide placeholder:italic placeholder:text-neutral-600 focus:border-neutral-900 focus:outline-none focus:ring-0 sm:py-2.5 sm:pl-10 sm:text-sm md:py-3 md:pl-11"
+                  className="w-full rounded-md border border-neutral-900 bg-white py-2 pl-9 pr-4 text-xs tracking-wide text-black placeholder:italic placeholder:text-neutral-600 focus:border-neutral-900 focus:outline-none focus:ring-0 sm:py-2.5 sm:pl-10 sm:text-sm md:py-3 md:pl-11"
                   autoFocus
                 />
               </div>
@@ -167,7 +167,7 @@ export default function SearchDrawer({ isOpen, onClose }) {
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="flex-shrink-0 text-neutral-700 hover:text-black"
+                className="flex-shrink-0 text-neutral-700 hover:text-black cursor-pointer"
                 aria-label="Close search"
               >
                 <XMarkIcon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8" />

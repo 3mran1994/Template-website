@@ -57,7 +57,7 @@ export default function Drawer({
             )}
             <button
               aria-label="Close"
-              className="text-neutral-700 hover:text-black transition-colors"
+              className="text-neutral-700 hover:text-black transition-colors cursor-pointer"
               onClick={onClose}
             >
               {showCloseText && (
