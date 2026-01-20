@@ -51,7 +51,7 @@ const ProductsSection = () => (
         ))}
       </div>
       <div className="text-center mt-12">
-        <CTAButton className="border-neutral-800 text-neutral-900 bg-transparent hover:bg-neutral-100">
+        <CTAButton className="border-neutral-800 text-neutral-900 bg-transparent hover:bg-black hover:text-white hover:scale-110">
           SHOP NOW
         </CTAButton>
       </div>

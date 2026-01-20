@@ -34,7 +34,7 @@ const BlogSection = () => (
         ))}
       </div>
       <div className="text-center">
-        <CTAButton className="border-neutral-800 text-neutral-900 bg-transparent hover:bg-neutral-100">
+        <CTAButton className="border-neutral-800 text-neutral-900 bg-transparent hover:bg-black hover:text-white hover:scale-110">
           EXPLORE BREW GUIDES
         </CTAButton>
       </div>

@@ -1,4 +1,5 @@
-import React from "react";
+
+import CTAButton from "./CTAButton";
 
 export default function HeroSection() {
   return (
@@ -22,15 +23,14 @@ export default function HeroSection() {
             <p className="text-base leading-7 text-neutral-100 sm:text-lg">
               Experience this cup of deep, chocolatey sweetness from Guatemala&apos;s Champion of Organic Farming
             </p>
-            <a
-              className="inline-flex min-w-[170px] justify-center border border-white bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-black transition-all duration-500 ease-in-out hover:bg-neutral-200 hover:scale-110 hover:shadow-lg"
+            <CTAButton
               href="#"
-              style={{
-                transitionProperty: 'background, box-shadow, transform',
-              }}
+              noInvert
+              className="border-white bg-white text-black hover:scale-110 hover:shadow-lg"
+              style={{ transitionProperty: 'box-shadow, transform', transitionDuration: '500ms', transitionTimingFunction: 'ease-in-out' }}
             >
               SHOP NOW
-            </a>
+            </CTAButton>
           </div>
         </div>
       </div>
