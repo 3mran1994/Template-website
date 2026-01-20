@@ -1,4 +1,5 @@
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ProductsSection from "@/components/ProductsSection";
 import AboutSection from "@/components/AboutSection";
@@ -166,6 +167,8 @@ export default function HomePage() {
         <ProductsSection />
         <AboutSection />
         <BlogSection />
+        {/* Footer placed after BlogSection, matching full width and margin */}
+        <Footer />
       </main>
     </div>
   );
