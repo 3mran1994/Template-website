@@ -1,3 +1,5 @@
+import AddToCartButton from "./AddToCartButton";
+
 export default function SearchProductCard({ product }) {
   return (
     <a
@@ -46,9 +48,7 @@ export default function SearchProductCard({ product }) {
 
       {/* Add to Cart Button - Shows on Hover */}
       <div className="mt-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        <button className="w-full bg-neutral-700 py-3 text-sm font-medium uppercase tracking-wider text-white hover:bg-neutral-800 transition-colors duration-200">
-          ADD TO CART
-        </button>
+        <AddToCartButton />
       </div>
     </a>
   );

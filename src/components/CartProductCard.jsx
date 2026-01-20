@@ -1,3 +1,5 @@
+import AddToCartButton from "./AddToCartButton";
+
 export default function CartProductCard({ product }) {
   return (
     <div className="group relative flex flex-col cursor-pointer bg-white transition-transform duration-300 ease-in transform hover:scale-105">
@@ -35,9 +37,7 @@ export default function CartProductCard({ product }) {
 
       {/* Add to Cart Button - Shows on Hover */}
       <div className="mt-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100 px-2 pb-4">
-        <button className="w-full bg-neutral-700 py-3 text-sm font-medium uppercase tracking-wider text-white hover:bg-neutral-800 transition-colors duration-200">
-          ADD TO CART
-        </button>
+        <AddToCartButton />
       </div>
     </div>
   );
