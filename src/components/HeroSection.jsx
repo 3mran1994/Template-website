@@ -16,7 +16,7 @@ export default function HeroSection() {
       </div>
       <div className="relative mx-auto flex min-h-[70vh] w-full items-center py-12 sm:py-16">
         <div className="flex w-full flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-          <div className="space-y-6 text-left">
+          <div className="space-y-3 text-left">
             <h1 className="text-3xl font-semibold leading-tight sm:text-4xl md:text-[40px] font-[var(--font-display)]">
               Guatemala Antigua Josué Morales
             </h1>
@@ -26,7 +26,7 @@ export default function HeroSection() {
             <CTAButton
               href="#"
               noInvert
-              className="border-white bg-white text-black hover:scale-110 hover:shadow-lg"
+              className="border-white bg-white text-black hover:scale-110 hover:shadow-lg mt-6"
               style={{ transitionProperty: 'box-shadow, transform', transitionDuration: '500ms', transitionTimingFunction: 'ease-in-out' }}
             >
               SHOP NOW
