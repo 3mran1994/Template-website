@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
@@ -13,6 +13,10 @@ import Drawer from "./Drawer";
 import SearchDrawer from "./SearchDrawer";
 
 export default function NavBar({ navLinks = [], transparent = false }) {
+    // Dropdown close timers
+    const shopDropdownCloseTimeout = useRef();
+    const locationsDropdownCloseTimeout = useRef();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
   const [isLocationsDropdownOpen, setIsLocationsDropdownOpen] = useState(false);
@@ -103,19 +107,34 @@ export default function NavBar({ navLinks = [], transparent = false }) {
     { label: "FIND IN GROCERY", href: "#" },
   ];
 
+  // Determine if dropdown is active
+  const dropdownActive = isShopDropdownOpen || isLocationsDropdownOpen;
+  // Instantly switch navbar color with dropdown state
+  const dropdownReallyActive = dropdownActive;
   return (
     <>
-      <header className={
-        `w-full border-b ${transparent ? 'border-transparent bg-transparent' : 'border-neutral-200 bg-white/95 backdrop-blur'}`
-      }>
-      <div className="mx-auto flex h-20 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <header
+        className={`w-full border-b transition-colors duration-200 ease-in relative z-50 ${
+          transparent && !dropdownReallyActive
+            ? 'border-transparent bg-transparent'
+            : dropdownReallyActive
+              ? 'border-neutral-200 bg-white'
+              : 'border-neutral-200 bg-white/95 backdrop-blur'
+        }`}
+      >
+      <div className="mx-auto flex h-20 w-full items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 relative">
         {/* Left Navigation */}
         <div className="flex flex-1 items-center gap-8 sm:gap-10">
-          <nav className={`hidden items-center gap-8 text-base font-normal tracking-wider md:flex lg:gap-10 ${transparent ? 'text-white' : 'text-neutral-900'}`}>
+          <nav className={`hidden items-stretch gap-8 text-base font-normal tracking-wider md:flex lg:gap-10 ${transparent && !dropdownReallyActive ? 'text-white' : 'text-neutral-900'}`}>
             <div
-              className="relative cursor-pointer border-b border-transparent py-0.5 hover:border-neutral-900"
-              onMouseEnter={() => setIsShopDropdownOpen(true)}
-              onMouseLeave={() => setIsShopDropdownOpen(false)}
+              className="relative cursor-pointer border-b border-transparent py-0.5 hover:border-neutral-900 h-full flex items-center"
+              onMouseEnter={() => {
+                clearTimeout(shopDropdownCloseTimeout.current);
+                setIsShopDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                shopDropdownCloseTimeout.current = setTimeout(() => setIsShopDropdownOpen(false), 300);
+              }}
             >
               SHOP
             </div>
@@ -123,9 +142,10 @@ export default function NavBar({ navLinks = [], transparent = false }) {
               <a
                 key={item.label}
                 href={item.href}
-                className={`border-b border-transparent py-0.5 ${transparent ? 'hover:border-white' : 'hover:border-neutral-900'}`}
+                className={`border-b border-transparent py-0.5 ${transparent ? 'hover:border-white' : 'hover:border-neutral-900'} h-full flex items-center`}
                 onMouseEnter={() => {
                   if (item.label === "LOCATIONS") {
+                    clearTimeout(locationsDropdownCloseTimeout.current);
                     setIsLocationsDropdownOpen(true);
                     setIsShopDropdownOpen(false);
                   } else {
@@ -134,7 +154,7 @@ export default function NavBar({ navLinks = [], transparent = false }) {
                 }}
                 onMouseLeave={() => {
                   if (item.label === "LOCATIONS") {
-                    setIsLocationsDropdownOpen(false);
+                    locationsDropdownCloseTimeout.current = setTimeout(() => setIsLocationsDropdownOpen(false), 300);
                   }
                 }}
               >
@@ -145,12 +165,12 @@ export default function NavBar({ navLinks = [], transparent = false }) {
         </div>
 
         {/* Center Logo */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center h-20">
           <a href="/" aria-label="Home" className="block">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 64"
-              className={`h-14 w-11 ${transparent ? 'text-white' : 'text-[#4a9fb5]'}`}
+              className={`h-14 w-11 ${transparent && !dropdownReallyActive ? 'text-white' : 'text-[#4a9fb5]'}`}
               fill="currentColor"
             >
               <path d="M24 2c-6.6 0-12 5.4-12 12v20c0 4 2 7.5 5 9.5v8.5c0 4.4 3.6 8 8 8h2c4.4 0 8-3.6 8-8v-8.5c3-2 5-5.5 5-9.5V14c0-6.6-5.4-12-12-12h-4zm-8 12c0-4.4 3.6-8 8-8h4c4.4 0 8 3.6 8 8v20c0 3.3-2 6.2-5 7.4V34c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v7.4c-3-1.2-5-4.1-5-7.4V14zm5 28h6v10c0 2.2-1.8 4-4 4h-2c-2.2 0-4-1.8-4-4V42z"/>
@@ -159,24 +179,24 @@ export default function NavBar({ navLinks = [], transparent = false }) {
         </div>
 
         {/* Right Icons */}
-        <div className={`flex flex-1 items-center justify-end gap-4 text-sm ${transparent ? 'text-white' : 'text-neutral-700'}`}>
+        <div className={`flex flex-1 items-center justify-end gap-4 text-sm ${transparent && !dropdownReallyActive ? 'text-white' : 'text-neutral-700'}`}>
           <button 
             aria-label="Search" 
-            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
+            className={`cursor-pointer ${transparent && !dropdownReallyActive ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsSearchOpen(true)}
           >
             <MagnifyingGlassIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Account" 
-            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
+            className={`cursor-pointer ${transparent && !dropdownReallyActive ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsProfileOpen(true)}
           >
             <UserIcon className="h-6 w-6" />
           </button>
           <button 
             aria-label="Cart" 
-            className={`cursor-pointer ${transparent ? 'hover:text-white' : 'hover:text-black'}`}
+            className={`cursor-pointer ${transparent && !dropdownReallyActive ? 'hover:text-white' : 'hover:text-black'}`}
             onClick={() => setIsCartOpen(true)}
           >
             <ShoppingBagIcon className="h-6 w-6" />
@@ -195,11 +215,17 @@ export default function NavBar({ navLinks = [], transparent = false }) {
 
       {/* Mega Menu Dropdown - Hidden on mobile */}
       <div
-        className={`absolute left-0 right-0 top-20 hidden w-full bg-white shadow-lg transition-all duration-300 md:block ${
+        className={`absolute left-0 right-0 top-full hidden w-full bg-white shadow-lg transition-all duration-300 z-40 md:block ${
           isShopDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-        onMouseEnter={() => setIsShopDropdownOpen(true)}
-        onMouseLeave={() => setIsShopDropdownOpen(false)}
+        onMouseEnter={() => {
+          clearTimeout(shopDropdownCloseTimeout.current);
+          setIsShopDropdownOpen(true);
+        }}
+        onMouseLeave={() => {
+          shopDropdownCloseTimeout.current = setTimeout(() => setIsShopDropdownOpen(false), 300);
+        }}
+        style={{ marginTop: 0 }}
       >
         <div className="w-full px-6 py-6 md:py-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-[2fr_3fr]">
@@ -254,31 +280,42 @@ export default function NavBar({ navLinks = [], transparent = false }) {
 
       {/* Locations Dropdown - Hidden on mobile */}
       <div
-        className={`absolute left-0 right-0 top-16 hidden w-full bg-white shadow-lg transition-all duration-300 md:block ${
+        className={`absolute left-0 right-0 top-full hidden w-full bg-white shadow-lg transition-all duration-300 z-40 md:block ${
           isLocationsDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-        onMouseEnter={() => setIsLocationsDropdownOpen(true)}
-        onMouseLeave={() => setIsLocationsDropdownOpen(false)}
+        onMouseEnter={() => {
+          clearTimeout(locationsDropdownCloseTimeout.current);
+          setIsLocationsDropdownOpen(true);
+        }}
+        onMouseLeave={() => {
+          locationsDropdownCloseTimeout.current = setTimeout(() => setIsLocationsDropdownOpen(false), 300);
+        }}
+        style={{ marginTop: 0 }}
       >
         <div className="w-full px-6 py-6 md:py-8 lg:px-12 xl:px-16">
-          <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-[1fr_3fr]">
-            {/* Locations Options */}
-            <div>
-              <ul className="space-y-2">
-                {locationsOptions.map((option) => (
-                  <li key={option.label}>
-                    <a
-                      href={option.href}
-                      className="block text-xs font-semibold tracking-wider text-neutral-900 hover:text-neutral-600"
-                    >
-                      {option.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-[2fr_3fr]">
+            {/* Categories Navigation (Locations) */}
+            <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 md:gap-x-8 md:gap-y-6">
+              <div>
+                <h3 className="mb-2 border-b border-neutral-200 pb-2 text-[10px] font-semibold tracking-wider text-neutral-900 sm:text-xs md:mb-3">
+                  LOCATIONS
+                </h3>
+                <ul className="space-y-1.5 md:space-y-2">
+                  {locationsOptions.map((option) => (
+                    <li key={option.label}>
+                      <a
+                        href={option.href}
+                        className="block text-[10px] text-neutral-600 hover:text-neutral-900 sm:text-xs"
+                      >
+                        {option.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Featured Cards */}
+            {/* Featured Cards (same as SHOP) */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {featuredCards.map((card) => (
                 <a
