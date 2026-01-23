@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import BlogSection from "../../components/BlogSection";
+import Footer from "../../components/Footer";
 import React from "react";
 const navLinks = [
   { label: "BEST SELLERS", href: "/shop" },
@@ -158,6 +159,8 @@ export default function ShopPage() {
 
       {/* Blog section at the bottom */}
       <BlogSection />
+      {/* Footer at the very bottom */}
+      <Footer />
     </div>
   );
 }
