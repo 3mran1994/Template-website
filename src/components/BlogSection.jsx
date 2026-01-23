@@ -21,7 +21,7 @@ const blogGuides = [
 const BlogSection = () => (
   <section className="bg-white pt-[60px] pb-16 w-full">
     <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-24">
-      <h2 className="text-2xl font-serif mb-10">Explore Our Brew Guides</h2>
+      <h2 className="text-2xl font-serif mb-10 text-black">Explore Our Brew Guides</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
         {blogGuides.map((guide) => (
           <BlogCard

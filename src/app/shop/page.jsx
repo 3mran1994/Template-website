@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import BlogSection from "../../components/BlogSection";
 import React from "react";
 const navLinks = [
   { label: "BEST SELLERS", href: "/shop" },
@@ -6,7 +7,7 @@ const navLinks = [
   { label: "LOCATIONS", href: "#" },
 ];
 import ProductCard from "../../components/ProductCard";
-import styles from "../styles/globals.css";
+import ShopFilterSelect from "../../components/ShopFilterSelect";
 
 const bestSellers = [
   {
@@ -123,6 +124,10 @@ const bestSellers = [
 ];
 
 export default function ShopPage() {
+
+  // Optional: State for selected filter (for future interactivity)
+  // const [selectedCategory, setSelectedCategory] = React.useState(null);
+
   return (
     <div className="shop-page" style={{ marginTop: 0, paddingTop: 0 }}>
       <Header navLinks={navLinks} />
@@ -135,10 +140,14 @@ export default function ShopPage() {
         {/* Hero background image now set */}
       </div>
       <main className="shop-main" style={{ background: "#fff", padding: "48px 0" }}>
+        {/* Filter Select Section */}
+        <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+          <h2 className="text-2xl font-serif mb-10 text-black">Top Categories</h2>
+          <ShopFilterSelect />
+        </div>
+        {/* End Filter Select Section */}
         <div className="w-full px-6 pt-4 pb-5 sm:px-8 sm:pt-5 sm:pb-6 md:px-12 md:pt-6 md:pb-8 lg:px-16 lg:pt-6 lg:pb-10 xl:px-20 2xl:px-24">
-          <h2 className="mb-6 text-sm font-semibold tracking-wider text-neutral-900 sm:mb-7 md:mb-8 md:text-base lg:text-lg">
-            MOST POPULAR
-          </h2>
+          <h2 className="text-2xl font-serif mb-10 text-black">Most Popular</h2>
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 md:gap-x-10 md:gap-y-12 lg:grid-cols-3 lg:gap-x-12">
             {bestSellers.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -146,6 +155,9 @@ export default function ShopPage() {
           </div>
         </div>
       </main>
+
+      {/* Blog section at the bottom */}
+      <BlogSection />
     </div>
   );
 }

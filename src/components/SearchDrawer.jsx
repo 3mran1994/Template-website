@@ -3,6 +3,8 @@
 import { XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+
+import ShopFilterSelect from "./ShopFilterSelect";
 import ProductCard from "./ProductCard";
 
 
@@ -17,14 +19,8 @@ export default function SearchDrawer({ isOpen, onClose }) {
   }, [isOpen]);
 
   // Mock data for demonstration
-  const topCategories = [
-    "MOST LOVED",
-    "SIGNATURE BLENDS",
-    "CRAFT MATCHA",
-    "CRAFT INSTANT",
-    "BUNDLE AND SAVE",
-    "BREW TOOLS"
-  ];
+
+  // Optionally, you can pass a custom list or use the default categories in ShopFilterSelect
 
   const popularProducts = [
     {
@@ -178,28 +174,17 @@ export default function SearchDrawer({ isOpen, onClose }) {
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto">
             <div className="w-full px-6 pt-4 pb-5 sm:px-8 sm:pt-5 sm:pb-6 md:px-12 md:pt-6 md:pb-8 lg:px-16 lg:pt-6 lg:pb-10 xl:px-20 2xl:px-24">
-              {/* Top Categories */}
-              <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-8">
-                <h2 className="mb-4 text-sm font-semibold tracking-wider text-neutral-900 sm:mb-5 md:mb-6 md:text-base lg:text-lg">
-                  TOP CATEGORIES
-                </h2>
-                <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
-                  {topCategories.map((category) => (
-                    <button
-                      key={category}
-                      className="border border-neutral-700 bg-white px-3 py-1.5 text-[10px] font-medium tracking-wider text-neutral-700 hover:bg-neutral-800 hover:text-white hover:border-neutral-800 transition-all duration-300 ease-in-out sm:px-3.5 sm:py-1.5 sm:text-[11px] md:px-4 md:py-2 md:text-xs"
-                    >
-                      {category}
-                    </button>
-                  ))}
+              {/* Top Categories (now using ShopFilterSelect) */}
+              <div className="mb-6 sm:mb-7 md:mb-8 lg:mb-8 w-full px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+                <h2 className="text-2xl font-serif mb-10 text-black">Top Categories</h2>
+                <div className="w-full px-0">
+                  <ShopFilterSelect classNameOverride="justify-start" noHorizontalPadding />
                 </div>
               </div>
 
               {/* Most Popular Products */}
-              <div>
-                <h2 className="mb-6 text-sm font-semibold tracking-wider text-neutral-900 sm:mb-7 md:mb-8 md:text-base lg:text-lg">
-                  MOST POPULAR
-                </h2>
+              <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+                <h2 className="text-2xl font-serif mb-10 text-black">Most Popular</h2>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 md:gap-x-10 md:gap-y-12 lg:grid-cols-3 lg:gap-x-12">
                   {popularProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
