@@ -23,7 +23,7 @@ export default function AboutSection() {
         {/* Right Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-white px-4 sm:px-8 md:px-12 lg:px-24 py-8 md:py-0 flex-1">
           <div className="w-full max-w-lg mx-0 md:mx-auto flex flex-col items-center">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 font-[var(--font-display)] text-center">New Rituals for the Year Ahead</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 font-[var(--font-display)] text-center text-black">New Rituals for the Year Ahead</h2>
             <p className="mb-8 text-base text-neutral-700 text-center max-w-md">
               Elevate your rituals with tools and guides to bring the art of Blue Bottle home.
             </p>
@@ -41,7 +41,7 @@ export default function AboutSection() {
         {/* Left Content */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-[#fcfaf7] px-4 sm:px-8 md:px-12 lg:px-24 py-8 md:py-0 flex-1">
           <div className="w-full max-w-lg mx-0 md:mx-auto flex flex-col items-center">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 font-[var(--font-display)] text-center">Blue Bottle Coffee Subscription</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 font-[var(--font-display)] text-center text-black">Blue Bottle Coffee Subscription</h2>
             <p className="mb-8 text-base text-neutral-700 text-center max-w-md">
               Experience the world’s most beautiful coffees through a Blue Bottle Coffee Subscription.
             </p>

@@ -9,6 +9,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import CartProductCard from "./CartProductCard";
+import DropdownCard from "./DropdownCard";
 import Drawer from "./Drawer";
 import SearchDrawer from "./SearchDrawer";
 
@@ -255,23 +256,7 @@ export default function NavBar({ navLinks = [], transparent = false }) {
             {/* Featured Cards */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {featuredCards.map((card) => (
-                <a
-                  key={card.title}
-                  href={card.href}
-                  className="group relative flex flex-col overflow-hidden rounded-sm bg-neutral-100"
-                >
-                  <div className="aspect-square w-full bg-neutral-200">
-                    {/* Placeholder for images */}
-                    <div className="flex h-full w-full items-center justify-center text-[10px] text-neutral-400 sm:text-xs">
-                      Image
-                    </div>
-                  </div>
-                  <div className="p-2 sm:p-3">
-                    <p className="text-[9px] font-semibold tracking-wider text-neutral-900 group-hover:text-[#6dc3d8] sm:text-xs">
-                      {card.title}
-                    </p>
-                  </div>
-                </a>
+                <DropdownCard key={card.title} title={card.title} image={card.image} />
               ))}
             </div>
           </div>
@@ -318,23 +303,7 @@ export default function NavBar({ navLinks = [], transparent = false }) {
             {/* Featured Cards (same as SHOP) */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
               {featuredCards.map((card) => (
-                <a
-                  key={card.title}
-                  href={card.href}
-                  className="group relative flex flex-col overflow-hidden rounded-sm bg-neutral-100"
-                >
-                  <div className="aspect-square w-full bg-neutral-200">
-                    {/* Placeholder for images */}
-                    <div className="flex h-full w-full items-center justify-center text-[10px] text-neutral-400 sm:text-xs">
-                      Image
-                    </div>
-                  </div>
-                  <div className="p-2 sm:p-3">
-                    <p className="text-[9px] font-semibold tracking-wider text-neutral-900 group-hover:text-[#6dc3d8] sm:text-xs">
-                      {card.title}
-                    </p>
-                  </div>
-                </a>
+                <DropdownCard key={card.title} title={card.title} image={card.image} />
               ))}
             </div>
           </div>

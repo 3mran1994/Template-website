@@ -8,9 +8,9 @@ const BlogCard = ({ title, description, image, link }) => (
       <div className="absolute inset-0 bg-[#e8e3d8]/50 opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
     </div>
     <div className="flex-1 flex flex-col justify-end items-start h-72">
-      <h3 className="text-lg font-semibold tracking-wide mb-2 uppercase">{title}</h3>
+      <h3 className="text-lg font-semibold tracking-wide mb-2 uppercase text-black">{title}</h3>
       <p className="mb-4 text-neutral-700">{description}</p>
-      <a href={link} className="text-xs tracking-widest font-medium underline-offset-4 hover:underline hover:text-neutral-900 transition-colors">LEARN MORE</a>
+      <a href={link} className="text-xs tracking-widest font-medium underline-offset-4 text-black hover:underline hover:text-neutral-900 transition-colors">LEARN MORE</a>
     </div>
   </div>
 );

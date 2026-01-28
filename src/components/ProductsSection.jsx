@@ -44,7 +44,7 @@ const products = [
 const ProductsSection = () => (
   <section className="bg-[#fcfaf7] py-16 w-full">
     <div className="w-full px-2 sm:px-4 md:px-8 lg:px-16 xl:px-24">
-      <h2 className="text-2xl font-serif mb-10">Our Most Loved</h2>
+      <h2 className="text-2xl font-serif mb-10 text-black">Our Most Loved</h2>
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

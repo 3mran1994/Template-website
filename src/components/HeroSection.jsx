@@ -26,8 +26,7 @@ export default function HeroSection() {
             <CTAButton
               href="/shop"
               noInvert
-              className="border-white bg-white text-black hover:scale-110 hover:shadow-lg mt-6"
-              style={{ transitionProperty: 'box-shadow, transform', transitionDuration: '500ms', transitionTimingFunction: 'ease-in-out' }}
+              className="border-white bg-white text-black hover:scale-110 hover:shadow-lg mt-6 transition-transform transition-shadow duration-500 ease-in-out"
             >
               SHOP NOW
             </CTAButton>

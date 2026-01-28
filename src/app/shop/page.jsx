@@ -143,7 +143,6 @@ export default function ShopPage() {
       <main className="shop-main" style={{ background: "#fff", padding: "48px 0" }}>
         {/* Filter Select Section */}
         <div className="w-full px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
-          <h2 className="text-2xl font-serif mb-10 text-black">Top Categories</h2>
           <ShopFilterSelect />
         </div>
         {/* End Filter Select Section */}
